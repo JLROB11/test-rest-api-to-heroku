@@ -12,7 +12,10 @@ const app = express();
 
 // Set up mongoose connection
 // Atlas project: test-rest-api-to-heroku, cluster: test-rest-api-to-heroku, username: admin, password: adminpw
-const dev_db_url = 'mongodb://admin:adminpw@test-rest-api-to-heroku-shard-00-00-wbwh9.mongodb.net:27017,test-rest-api-to-heroku-shard-00-01-wbwh9.mongodb.net:27017,test-rest-api-to-heroku-shard-00-02-wbwh9.mongodb.net:27017/test?ssl=true&replicaSet=test-rest-api-to-heroku-shard-0&authSource=admin'
+const dev_db_url = 
+'mongodb://admin:' 
++ process.env.MONGO_ATLAS_PW
++ '@test-rest-api-to-heroku-shard-00-00-wbwh9.mongodb.net:27017,test-rest-api-to-heroku-shard-00-01-wbwh9.mongodb.net:27017,test-rest-api-to-heroku-shard-00-02-wbwh9.mongodb.net:27017/test?ssl=true&replicaSet=test-rest-api-to-heroku-shard-0&authSource=admin'
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, {
   useMongoClient: true
